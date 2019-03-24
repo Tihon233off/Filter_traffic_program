@@ -1,0 +1,11 @@
+#подключаем необходимые библиотеки(include nessesary libraries)
+library("dplyr", "tidyr","data.table")
+#считываем файл и делаем из него таблицу(open file and make new table)
+newtable<-select(read.csv("~/Desktop/shark"), Protocol,Source,Destination)
+#структурируем данные(struct the data)
+RESULT_TABLE<-data.table::data.table(count(group_by(newtable, Protocol,Source, Protocol,Destination)))
+#упорядочим по убыванию(write from max to min) и (and) создадим конечную таблицу(make result table)
+RESULT_TABLE<-dplyr::arrange(RESULT_TABLE,desc(RESULT_TABLE$n))
+#очистим память и сохраним таблицу(clear memory and save our result)
+write.csv(RESULT_TABLE, file="RESULT2.csv")
+
