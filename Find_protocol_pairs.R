@@ -8,4 +8,5 @@ RESULT_TABLE<-data.table::data.table(count(group_by(newtable, Protocol,Source, P
 RESULT_TABLE<-dplyr::arrange(RESULT_TABLE,desc(RESULT_TABLE$n))
 #очистим память и сохраним таблицу(clear memory and save our result)
 write.csv(RESULT_TABLE, file="RESULT2.csv")
+rm(newtable)
 
